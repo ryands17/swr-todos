@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import useSWR from 'swr'
 import { Todo } from 'types/Todo'
-import { baseUrl } from 'config/env'
 import { TodoItem } from './TodoItem'
+import { todosUrls } from 'services/todos'
 
 export const TodoList: React.FC = memo(() => {
-  const { data, error } = useSWR<Todo[]>(`${baseUrl}/todos`)
+  const { data, error } = useSWR<Todo[]>(todosUrls.todos)
 
   if (error) return <h3>{error.message}</h3>
 

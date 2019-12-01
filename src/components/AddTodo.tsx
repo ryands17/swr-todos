@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { ENTER, uuidv4 } from 'config/utils'
-import { post } from 'services/main'
 import { Todo } from 'types/Todo'
-import { baseUrl } from 'config/env'
 import useSWR, { mutate } from 'swr'
+import { todosUrls, addTodo } from 'services/todos'
 
 export const AddTodo: React.FC = () => {
-  const { data } = useSWR<Todo[]>(`${baseUrl}/todos`)
+  const { data } = useSWR<Todo[]>(todosUrls.todos)
   const [title, setTitle] = useState('')
 
   return (
@@ -22,8 +21,8 @@ export const AddTodo: React.FC = () => {
               title,
               completed: false,
             }
-            await post<Todo>(todo)
-            data && mutate(`${baseUrl}/todos`, [...data, todo])
+            await addTodo<Todo>(todo)
+            data && mutate(todosUrls.todos, [...data, todo])
             setTitle('')
           }
         }}

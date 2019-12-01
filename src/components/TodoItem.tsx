@@ -2,16 +2,15 @@ import React, { useRef, useState, useEffect } from 'react'
 import cx from 'clsx'
 import { Todo } from 'types/Todo'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
-import { patch, xdelete } from 'services/main'
 import useSWR, { mutate } from 'swr'
-import { baseUrl } from 'config/env'
+import { todosUrls, editTodo, deleteTodo } from 'services/todos'
 
 type ITodoItem = {
   todo: Todo
 }
 
 export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
-  const { data } = useSWR<Todo[]>(`${baseUrl}/todos`)
+  const { data } = useSWR<Todo[]>(todosUrls.todos)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState('')
@@ -25,14 +24,14 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
 
   const handleSubmit = async (id: string) => {
     if (editTitle.trim()) {
-      await patch<Todo>(id, {
+      await editTodo<Todo>(id, {
         title: editTitle,
       })
       if (data) {
         const updatedTodos = [...data]
         let index = updatedTodos.findIndex(t => t.id === todo.id)
         updatedTodos[index].title = editTitle
-        mutate(`${baseUrl}/todos`, updatedTodos)
+        mutate(todosUrls.todos, updatedTodos)
       }
       setEditTitle('')
       setIsEditing(false)
@@ -70,14 +69,14 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
         <input
           className="toggle"
           onChange={async () => {
-            await patch<Todo>(todo.id, {
+            await editTodo(todo.id, {
               completed: !todo.completed,
             })
             if (data) {
               const updatedTodos = [...data]
               let index = updatedTodos.findIndex(t => t.id === todo.id)
               updatedTodos[index].completed = !updatedTodos[index].completed
-              mutate(`${baseUrl}/todos`, updatedTodos)
+              mutate(todosUrls.todos, updatedTodos)
             }
           }}
           checked={todo.completed}
@@ -92,12 +91,12 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
         <button
           className="destroy"
           onClick={async () => {
-            await xdelete(todo.id)
+            await deleteTodo(todo.id)
             if (data) {
               const updatedTodos = [...data]
               let index = updatedTodos.findIndex(t => t.id === todo.id)
               updatedTodos.splice(index, 1)
-              mutate(`${baseUrl}/todos`, updatedTodos)
+              mutate(todosUrls.todos, updatedTodos)
             }
           }}
         />
