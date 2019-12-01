@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Learn React Hooks",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Learn React Suspense",
+      "completed": false
+    },
+    {
+      "id": "cbe600d1-d855-4c50-83d4-1196b963257b",
+      "title": "Learn SWR",
+      "completed": false
+    }
+  ]
+}
