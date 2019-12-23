@@ -43,7 +43,7 @@
     "@types/concurrently": "^4.1.0",
     "@types/json-server": "^0.14.2",
     "@types/prettier": "^1.19.0",
-    "concurrently": "^5.0.1",
+    "concurrently": "^5.0.2",
     "json-server": "^0.15.1",
     "prettier": "^1.19.1",
     "typesync": "^0.6.1"
