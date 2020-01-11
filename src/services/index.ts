@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const post = (url: string) => async <T>(body: T) => {
+export const post = <T>(url: string) => async (body: T) => {
   try {
     let response = await axios.post(url, body)
     return response.data
@@ -10,7 +10,7 @@ export const post = (url: string) => async <T>(body: T) => {
   }
 }
 
-export const patch = (url: string) => async <T>(
+export const patch = <T>(url: string) => async (
   id: string,
   body: Partial<T>
 ) => {

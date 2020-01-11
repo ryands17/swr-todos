@@ -24,7 +24,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
 
   const handleSubmit = async (id: string) => {
     if (editTitle.trim()) {
-      await editTodo<Todo>(id, {
+      await editTodo(id, {
         title: editTitle,
       })
       if (data) {

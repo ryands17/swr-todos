@@ -21,7 +21,7 @@ export const AddTodo: React.FC = () => {
               title,
               completed: false,
             }
-            await addTodo<Todo>(todo)
+            await addTodo(todo)
             data && mutate(todosUrls.todos, [...data, todo])
             setTitle('')
           }
