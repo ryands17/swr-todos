@@ -14,7 +14,7 @@
     "react-scripts": "3.4.0",
     "swr": "^0.1.18",
     "todomvc-app-css": "2.2.0",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   },
   "scripts": {
     "dev": "concurrently \"npm run start:client\" \"npm run start:server\"",
