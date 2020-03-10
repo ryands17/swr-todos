@@ -6,17 +6,15 @@ import 'todomvc-app-css/index.css'
 
 import 'index.css'
 import { App } from 'App'
-// import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <SWRConfig
     value={{
-      fetcher: (...args: [string, AxiosRequestConfig]) =>
-        axios(...args)
-          .then(res => res.data)
-          .catch(err => {
-            throw err
-          }),
+      fetcher: async (...args: [string, AxiosRequestConfig]) => {
+        const res = await axios(...args)
+        return res.data
+      },
     }}
   >
     <App />
@@ -27,4 +25,7 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+serviceWorker.register({
+  onSuccess: () => console.log('service worker is running!'),
+  onUpdate: () => console.log('Your app has been updated in the background!'),
+})

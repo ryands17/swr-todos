@@ -23,7 +23,7 @@ In the project directory, you can run:
 ### `yarn dev`
 
 Runs the app in the development mode along with the database.<br />
-Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+Open [http://localhost:4001](http://localhost:4001) to view the app in the browser.
 
 Open [http://localhost:3001](http://localhost:3001) to view the database in the browser.
 
