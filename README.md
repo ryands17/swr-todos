@@ -2,14 +2,30 @@
 
 - A Todo List created with [SWR](https://github.com/zeit/swr) and [json-server](https://github.com/typicode/json-server)
 
+**_Note_**: You need to create a `db.json` in the root in the following manner for the project to work as it uses `json-server` as a database.
+
+```json
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Task 1",
+      "completed": false
+    }
+  ]
+}
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the app in the development mode along with the database.<br />
+Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+
+Open [http://localhost:3001](http://localhost:3001) to view the database in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
