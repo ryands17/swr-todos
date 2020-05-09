@@ -1,20 +1,48 @@
-import React, { useRef, useState, useEffect } from 'react'
+import * as React from 'react'
 import cx from 'clsx'
+import { useMutation, queryCache } from 'react-query'
 import { Todo } from 'types/Todo'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
-import useSWR, { mutate } from 'swr'
-import { todosUrls, editTodo, deleteTodo } from 'services/todos'
+import { deleteTodo, editTodo } from 'services/todos'
 
-type ITodoItem = {
+type TodoItem = {
   todo: Todo
 }
 
-export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
-  const { data } = useSWR<Todo[]>(todosUrls.todos)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [isEditing, setIsEditing] = useState(false)
-  const [editTitle, setEditTitle] = useState('')
-  const [editId, setEditId] = useState<string | null>(null)
+export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const [isEditing, setIsEditing] = React.useState(false)
+  const [editTitle, setEditTitle] = React.useState('')
+  const [editId, setEditId] = React.useState<string | null>(null)
+
+  const [deleteT] = useMutation(deleteTodo, {
+    onMutate: (deletedId) => {
+      const previousTodos = queryCache.getQueryData('todos')
+      queryCache.setQueryData('todos', (old: Todo[]) =>
+        old.filter((todo) => todo.id !== deletedId)
+      )
+
+      return () => queryCache.setQueryData('todos', previousTodos)
+    },
+  })
+
+  const [editT] = useMutation(editTodo, {
+    onMutate: (edited) => {
+      const previousTodos = queryCache.getQueryData('todos') as Todo[]
+      const updatedTodos = [...previousTodos]
+      const index = updatedTodos.findIndex((todo) => todo.id === edited.id)
+
+      if (index !== -1) {
+        updatedTodos[index] = {
+          ...updatedTodos[index],
+          ...edited.body,
+        }
+        queryCache.setQueryData('todos', updatedTodos)
+      }
+
+      return () => queryCache.setQueryData('todos', previousTodos)
+    },
+  })
 
   const handleEdit = ({ title, id }: { title: string; id: string }) => {
     setIsEditing(true)
@@ -24,15 +52,12 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
 
   const handleSubmit = async (id: string) => {
     if (editTitle.trim()) {
-      await editTodo(id, {
-        title: editTitle,
+      editT({
+        id,
+        body: {
+          title: editTitle,
+        },
       })
-      if (data) {
-        const updatedTodos = [...data]
-        let index = updatedTodos.findIndex(t => t.id === todo.id)
-        updatedTodos[index].title = editTitle
-        mutate(todosUrls.todos, updatedTodos)
-      }
       setEditTitle('')
       setIsEditing(false)
       setEditId(null)
@@ -54,7 +79,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
     }
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (inputRef.current) inputRef.current.focus()
   }, [isEditing])
 
@@ -68,16 +93,13 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
       <div className="view">
         <input
           className="toggle"
-          onChange={async () => {
-            await editTodo(todo.id, {
-              completed: !todo.completed,
+          onChange={() => {
+            editT({
+              id: todo.id,
+              body: {
+                completed: !todo.completed,
+              },
             })
-            if (data) {
-              const updatedTodos = [...data]
-              let index = updatedTodos.findIndex(t => t.id === todo.id)
-              updatedTodos[index].completed = !updatedTodos[index].completed
-              mutate(todosUrls.todos, updatedTodos)
-            }
           }}
           checked={todo.completed}
           readOnly
@@ -88,18 +110,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo }) => {
         >
           {todo.title}
         </label>
-        <button
-          className="destroy"
-          onClick={async () => {
-            await deleteTodo(todo.id)
-            if (data) {
-              const updatedTodos = [...data]
-              let index = updatedTodos.findIndex(t => t.id === todo.id)
-              updatedTodos.splice(index, 1)
-              mutate(todosUrls.todos, updatedTodos)
-            }
-          }}
-        />
+        <button className="destroy" onClick={() => deleteT(todo.id)} />
       </div>
       {editId && (
         <input

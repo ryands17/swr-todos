@@ -38,7 +38,7 @@ export const UpdateAppToast = () => {
   }
 
   function handleClose() {
-    showToast(false)
+    // showToast(false)
     window.location.reload()
   }
 }

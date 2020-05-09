@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 import { ENTER, uuidv4 } from 'config/utils'
+import { useMutation, queryCache } from 'react-query'
+import { addTodo } from 'services/todos'
 import { Todo } from 'types/Todo'
-import useSWR, { mutate } from 'swr'
-import { todosUrls, addTodo } from 'services/todos'
 
 export const AddTodo: React.FC = () => {
-  const { data } = useSWR<Todo[]>(todosUrls.todos)
   const [title, setTitle] = useState('')
+  const [mutate] = useMutation(addTodo, {
+    onMutate: (newTodo) => {
+      // Snapshot the previous value
+      const previousTodos = queryCache.getQueryData('todos')
+
+      // Optimistically update to the new value
+      queryCache.setQueryData('todos', (old: Todo[]) => [...old, newTodo])
+
+      // Return the snapshotted value
+      return () => queryCache.setQueryData('todos', previousTodos)
+    },
+  })
 
   return (
     <header className="header">
@@ -21,8 +32,7 @@ export const AddTodo: React.FC = () => {
               title,
               completed: false,
             }
-            await addTodo(todo)
-            data && mutate(todosUrls.todos, [...data, todo])
+            mutate(todo)
             setTitle('')
           }
         }}
