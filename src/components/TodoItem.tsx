@@ -1,6 +1,7 @@
 import * as React from 'react'
-import cx from 'clsx'
+import produce from 'immer'
 import { useMutation, queryCache } from 'react-query'
+import cx from 'clsx'
 import { Todo } from 'types/Todo'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
 import { deleteTodo, editTodo } from 'services/todos'
@@ -28,19 +29,24 @@ export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
 
   const [editT] = useMutation(editTodo, {
     onMutate: (edited) => {
-      const previousTodos = queryCache.getQueryData('todos') as Todo[]
-      const updatedTodos = [...previousTodos]
-      const index = updatedTodos.findIndex((todo) => todo.id === edited.id)
+      const todos = queryCache.getQueryData('todos') as Todo[] | undefined
+      if (todos) {
+        const index = todos.findIndex((todo) => todo.id === edited.id)
 
-      if (index !== -1) {
-        updatedTodos[index] = {
-          ...updatedTodos[index],
-          ...edited.body,
+        if (index !== -1) {
+          queryCache.setQueryData(
+            'todos',
+            produce((prevTodos: Todo[]) => {
+              prevTodos[index] = {
+                ...prevTodos[index],
+                ...edited.body,
+              }
+            })
+          )
         }
-        queryCache.setQueryData('todos', updatedTodos)
       }
 
-      return () => queryCache.setQueryData('todos', previousTodos)
+      return () => queryCache.setQueryData('todos', todos)
     },
   })
 

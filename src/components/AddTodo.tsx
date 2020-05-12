@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import produce from 'immer'
 import { ENTER, uuidv4 } from 'config/utils'
 import { useMutation, queryCache } from 'react-query'
 import { addTodo } from 'services/todos'
@@ -12,7 +13,12 @@ export const AddTodo: React.FC = () => {
       const previousTodos = queryCache.getQueryData('todos')
 
       // Optimistically update to the new value
-      queryCache.setQueryData('todos', (old: Todo[]) => [...old, newTodo])
+      queryCache.setQueryData(
+        'todos',
+        produce((prevTodos: Todo[]) => {
+          prevTodos.push(newTodo)
+        })
+      )
 
       // Return the snapshotted value
       return () => queryCache.setQueryData('todos', previousTodos)
