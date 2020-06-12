@@ -17,10 +17,10 @@ export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
   const [editId, setEditId] = React.useState<string | null>(null)
 
   const [deleteT] = useMutation(deleteTodo, {
-    onMutate: (deletedId) => {
-      const previousTodos = queryCache.getQueryData('todos')
-      queryCache.setQueryData('todos', (old: Todo[]) =>
-        old.filter((todo) => todo.id !== deletedId)
+    onMutate: deletedId => {
+      const previousTodos = queryCache.getQueryData<Todo[]>('todos')
+      queryCache.setQueryData<Todo[]>('todos', old =>
+        old?.filter(todo => todo.id !== deletedId)
       )
 
       return () => queryCache.setQueryData('todos', previousTodos)
@@ -28,18 +28,19 @@ export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
   })
 
   const [editT] = useMutation(editTodo, {
-    onMutate: (edited) => {
+    onMutate: edited => {
       const todos = queryCache.getQueryData('todos') as Todo[] | undefined
       if (todos) {
-        const index = todos.findIndex((todo) => todo.id === edited.id)
+        const index = todos.findIndex(todo => todo.id === edited.id)
 
         if (index !== -1) {
-          queryCache.setQueryData(
-            'todos',
-            produce((prevTodos: Todo[]) => {
-              prevTodos[index] = {
-                ...prevTodos[index],
-                ...edited.body,
+          queryCache.setQueryData<Todo[]>('todos', todos =>
+            produce(todos, draft => {
+              if (draft) {
+                draft[index] = {
+                  ...draft[index],
+                  ...edited.body,
+                }
               }
             })
           )

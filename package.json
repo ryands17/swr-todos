@@ -5,25 +5,26 @@
   "dependencies": {
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
-    "@types/jest": "25.2.1",
-    "@types/node": "13.13.5",
-    "@types/react": "16.9.34",
-    "@types/react-dom": "16.9.7",
+    "@types/jest": "26.0.0",
+    "@types/node": "14.0.13",
+    "@types/react": "16.9.36",
+    "@types/react-dom": "16.9.8",
     "axios": "^0.19.2",
-    "clsx": "^1.1.0",
-    "immer": "^6.0.5",
+    "clsx": "^1.1.1",
+    "immer": "^7.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
-    "react-query": "^1.3.3",
+    "react-query": "^1.5.7",
     "react-scripts": "3.4.1",
     "todomvc-app-css": "2.2.0",
-    "typescript": "3.8.3"
+    "typescript": "3.9.5"
   },
   "scripts": {
     "dev": "run-p start:client start:server",
     "start:client": "craco start",
     "start:server": "json-server --watch db.json -p 3001",
     "build": "craco build",
+    "lint": "eslint 'src/**/*.{js,ts}'",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -32,8 +33,8 @@
   },
   "browserslist": {
     "production": [
-      ">0.1%",
-      "not dead",
+      ">0.75%",
+      "not ie 11",
       "not op_mini all"
     ],
     "development": [
@@ -45,16 +46,16 @@
   "devDependencies": {
     "@craco/craco": "^5.6.4",
     "@types/json-server": "^0.14.2",
-    "@types/prettier": "^2.0.0",
+    "@types/prettier": "^2.0.1",
     "craco-workbox": "^0.1.0",
     "json-server": "^0.16.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.2",
-    "typesync": "^0.6.1"
+    "typesync": "^0.7.0"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "arrowParens": "avoid"
   }
 }

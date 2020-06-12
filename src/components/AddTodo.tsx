@@ -8,15 +8,14 @@ import { Todo } from 'types/Todo'
 export const AddTodo: React.FC = () => {
   const [title, setTitle] = useState('')
   const [mutate] = useMutation(addTodo, {
-    onMutate: (newTodo) => {
+    onMutate: newTodo => {
       // Snapshot the previous value
-      const previousTodos = queryCache.getQueryData('todos')
+      const previousTodos = queryCache.getQueryData<Todo[]>('todos')
 
       // Optimistically update to the new value
-      queryCache.setQueryData(
-        'todos',
-        produce((prevTodos: Todo[]) => {
-          prevTodos.push(newTodo)
+      queryCache.setQueryData<Todo[]>('todos', todos =>
+        produce(todos, draft => {
+          draft?.push(newTodo)
         })
       )
 
