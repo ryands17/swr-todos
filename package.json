@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "run-p start:client start:server",
-    "start:client": "craco start",
+    "start:client": "BROWSER=none craco start",
     "start:server": "json-server --watch db.json -p 3001",
     "build": "craco build",
     "lint": "eslint 'src/**/*.{js,ts}'",

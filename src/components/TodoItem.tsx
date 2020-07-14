@@ -36,12 +36,7 @@ export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
         if (index !== -1) {
           queryCache.setQueryData<Todo[]>('todos', todos =>
             produce(todos, draft => {
-              if (draft) {
-                draft[index] = {
-                  ...draft[index],
-                  ...edited.body,
-                }
-              }
+              Object.assign(draft?.[index], edited.body)
             })
           )
         }
