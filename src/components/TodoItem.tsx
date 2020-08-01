@@ -6,11 +6,11 @@ import { Todo } from 'types/Todo'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
 import { deleteTodo, editTodo } from 'services/todos'
 
-type TodoItem = {
+type Props = {
   todo: Todo
 }
 
-export const TodoItem: React.FC<TodoItem> = ({ todo }) => {
+export const TodoItem: React.FC<Props> = ({ todo }) => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [isEditing, setIsEditing] = React.useState(false)
   const [editTitle, setEditTitle] = React.useState('')

@@ -1,15 +1,15 @@
-import { post, patch, xdelete, get } from './index'
+import { patch, put, xdelete, get } from './index'
 import { baseUrl } from 'config/env'
-import { Todo } from 'types/Todo'
+import { Todo, Todos } from 'types/Todo'
 
 export const todosUrls = {
   todos: `${baseUrl}/todos`,
 }
 
-export const fetchTodos = get<Todo>(todosUrls.todos)
+export const fetchTodos = get<Todos>(todosUrls.todos)
 
-export const addTodo = post<Todo>(todosUrls.todos)
+export const addTodo = patch<Todo>(todosUrls.todos)
 
-export const editTodo = patch<Todo>(todosUrls.todos)
+export const editTodo = put<Todo>(todosUrls.todos)
 
 export const deleteTodo = xdelete(todosUrls.todos)

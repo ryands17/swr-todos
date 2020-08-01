@@ -1,6 +1,6 @@
-import axios from 'redaxios'
+import axios from 'axios'
 
-export const get = <T>(url: string) => async (): Promise<T[] | null> => {
+export const get = <T>(url: string) => async (): Promise<T | null> => {
   try {
     let response = await axios.get(url)
     return response.data
@@ -10,7 +10,7 @@ export const get = <T>(url: string) => async (): Promise<T[] | null> => {
   }
 }
 
-export const post = <T>(url: string) => async (body: T) => {
+export const patch = <T>(url: string) => async (body: T) => {
   try {
     let response = await axios.post(url, body)
     return response.data
@@ -20,7 +20,7 @@ export const post = <T>(url: string) => async (body: T) => {
   }
 }
 
-export const patch = <T>(url: string) => async ({
+export const put = <T>(url: string) => async ({
   id,
   body,
 }: {
@@ -28,7 +28,12 @@ export const patch = <T>(url: string) => async ({
   body: Partial<T>
 }) => {
   try {
-    let response = await axios.patch(`${url}/${id}`, body)
+    let response = await axios.patch(`${url}/${id}`, body, {
+      responseType: 'json',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     return response.data
   } catch (e) {
     console.log(e.message)

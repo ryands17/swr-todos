@@ -3,17 +3,17 @@ import produce from 'immer'
 import { ENTER, uuidv4 } from 'config/utils'
 import { useMutation, queryCache } from 'react-query'
 import { addTodo } from 'services/todos'
-import { Todo } from 'types/Todo'
+import { Todos } from 'types/Todo'
 
 export const AddTodo: React.FC = () => {
   const [title, setTitle] = useState('')
   const [mutate] = useMutation(addTodo, {
     onMutate: newTodo => {
       // Snapshot the previous value
-      const previousTodos = queryCache.getQueryData<Todo[]>('todos')
+      const previousTodos = queryCache.getQueryData<Todos>('todos')
 
       // Optimistically update to the new value
-      queryCache.setQueryData<Todo[]>('todos', todos =>
+      queryCache.setQueryData<Todos>('todos', todos =>
         produce(todos, draft => {
           draft?.push(newTodo)
         })

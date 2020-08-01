@@ -7,13 +7,11 @@ import { UpdateAppToast } from 'components/UpdateAppToast'
 
 export const App: React.FC = () => {
   return (
-    <>
-      <ReactQueryDevtools initialIsOpen />
+    <div className="todoapp">
+      <ReactQueryDevtools />
       <UpdateAppToast />
-      <div className="todoapp">
-        <AddTodo />
-        <TodoList />
-      </div>
-    </>
+      <AddTodo />
+      <TodoList />
+    </div>
   )
 }

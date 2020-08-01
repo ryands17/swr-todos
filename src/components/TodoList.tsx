@@ -18,7 +18,9 @@ export const TodoList: React.FC = () => {
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
-        {todos && todos.map((todo) => <TodoItem todo={todo} key={todo.id} />)}
+        {todos?.map(todo => (
+          <TodoItem todo={todo} key={todo.id} />
+        ))}
       </ul>
     </section>
   )
