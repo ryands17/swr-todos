@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "id": "ff396346-00d1-4ca8-b276-55ccec87bff1",
+      "title": "Learn GraphQL",
+      "completed": true
+    },
+    {
+      "id": "ff396347-00d1-4ca8-b276-55ccec87bff1",
+      "title": "Learn React Query",
+      "completed": false
+    }
+  ]
+}
