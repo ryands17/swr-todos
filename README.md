@@ -1,6 +1,6 @@
 # SWR Todo List
 
-- A Todo List created with [SWR](https://github.com/zeit/swr) and [json-server](https://github.com/typicode/json-server)
+- A Todo List created with [React Query](https://react-query.tanstack.com/) and [json-server](https://github.com/typicode/json-server)
 
 **_Note_**: You need to create a `db.json` in the root in the following manner for the project to work as it uses `json-server` as a database.
 
@@ -30,10 +30,9 @@ Open [http://localhost:3001](http://localhost:3001) to view the database in the 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `yarn cy:test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches Cypress in watch mode to run integration tests specified in the [cypress/integration](./cypress/integration) folder.<br />
 
 ### `yarn build`
 
