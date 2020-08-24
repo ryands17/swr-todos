@@ -9696,9 +9696,9 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-i
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-query-devtools@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/react-query-devtools/-/react-query-devtools-2.4.2.tgz#64077b1f31c0b390b764fbabf0ba9c33ff549d1b"
-  integrity sha512-dJQWgGLnzwD+xC1vn62YmSifI/Ns1qv8RAJNESfF5fIqe3NVxt1a78b5N8aJJi8tBAB/g0qDvtxZFl4SEVS4XQ==
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/react-query-devtools/-/react-query-devtools-2.4.4.tgz#b179e5f5a0fd17027a66c59f782d051577eb79fb"
+  integrity sha512-ojVrdGZHuY4CXZzj4Q4VgT20fJB70quGwCONpNkLPG2s7C8u/7e6ZJQjoSySZ3WFydgvJqKxcHmIZuPGHqP6Vw==
   dependencies:
     match-sorter "^4.1.0"
 
