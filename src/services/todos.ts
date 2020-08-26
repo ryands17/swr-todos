@@ -1,6 +1,6 @@
 import { patch, put, xdelete, get } from './index'
-import { baseUrl } from 'config/env'
-import { Todo, Todos } from 'types/Todo'
+import { baseUrl } from 'config/utils'
+import { Todo, Todos } from 'config/types'
 
 export const todosUrls = {
   todos: `${baseUrl}/todos`,

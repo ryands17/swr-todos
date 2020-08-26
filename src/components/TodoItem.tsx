@@ -2,7 +2,7 @@ import * as React from 'react'
 import produce from 'immer'
 import { useMutation, queryCache } from 'react-query'
 import cx from 'clsx'
-import { Todo } from 'types/Todo'
+import { Todo, Todos, QueryTodo } from 'config/types'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
 import { deleteTodo, editTodo } from 'services/todos'
 
@@ -18,8 +18,8 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
 
   const [deleteT] = useMutation(deleteTodo, {
     onMutate: deletedId => {
-      const previousTodos = queryCache.getQueryData<Todo[]>('todos')
-      queryCache.setQueryData<Todo[]>('todos', old =>
+      const previousTodos = queryCache.getQueryData<Todos>('todos')
+      queryCache.setQueryData<QueryTodo>('todos', old =>
         old?.filter(todo => todo.id !== deletedId)
       )
 
@@ -29,12 +29,12 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
 
   const [editT] = useMutation(editTodo, {
     onMutate: edited => {
-      const todos = queryCache.getQueryData('todos') as Todo[] | undefined
+      const todos = queryCache.getQueryData<Todos>('todos')
       if (todos) {
         const index = todos.findIndex(todo => todo.id === edited.id)
 
         if (index !== -1) {
-          queryCache.setQueryData<Todo[]>('todos', todos =>
+          queryCache.setQueryData<QueryTodo>('todos', todos =>
             produce(todos, draft => {
               Object.assign(draft?.[index], edited.body)
             })

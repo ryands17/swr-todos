@@ -5,3 +5,5 @@ export type Todo = {
 }
 
 export type Todos = Todo[]
+
+export type QueryTodo = Todos | undefined
