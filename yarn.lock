@@ -9768,9 +9768,9 @@ react-query-devtools@^2.4.2:
     match-sorter "^4.1.0"
 
 react-query@^2.12.1:
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-2.18.0.tgz#f8ca6a401c6520c746945fa96e43dd72aeb38d65"
-  integrity sha512-QFT2i4P2xWQoNJ9pxOi4kyqt/EYsfc4oS7EP8CWtOjOkfVOKd/mcwA51CbdsN80LOdklvXqCV+h+smrkZ8lYEg==
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-2.23.0.tgz#9f9552a30380dfc1da2c165b5011465a78128ace"
+  integrity sha512-LHBhrr7ntstjpt85ssEaW3cGJx4BqQBFleTM3fXMO0MFzaMDQx0oxdUur+iQSOpLGPlrpToJbrjFNMQTpEExdA==
   dependencies:
     "@babel/runtime" "^7.5.5"
 
