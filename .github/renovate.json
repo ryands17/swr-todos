@@ -7,7 +7,7 @@
   "packageRules": [
     {
       "packagePatterns": ["react", "react-dom"],
-      "groupName": "nexus"
+      "groupName": "react-deps"
     },
     {
       "packagePatterns": ["^@types/", "typesync"],
