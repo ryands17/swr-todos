@@ -10,7 +10,7 @@ export const get = <T>(url: string) => async (): Promise<T | null> => {
   }
 }
 
-export const patch = <T>(url: string) => async (body: T) => {
+export const post = <T>(url: string) => async (body: T) => {
   try {
     let response = await axios.post(url, body)
     return response.data
