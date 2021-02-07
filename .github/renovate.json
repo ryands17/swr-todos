@@ -6,20 +6,37 @@
   "ignoreDeps": ["react-scripts"],
   "packageRules": [
     {
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance",
+        "rollback",
+        "bump"
+      ],
+      "automerge": true
+    },
+    {
       "packagePatterns": ["react", "react-dom"],
-      "groupName": "react-deps"
+      "groupName": "react-deps",
+      "automerge": true
     },
     {
       "packagePatterns": ["^@types/", "typesync"],
-      "groupName": "ts-types"
+      "groupName": "ts-types",
+      "automerge": true
     },
     {
       "packagePatterns": ["react-query*"],
-      "groupName": "react-query"
+      "groupName": "react-query",
+      "automerge": true
     },
     {
       "packagePatterns": ["prettier", "husky", "lint-staged"],
-      "groupName": "formatters"
+      "groupName": "formatters",
+      "automerge": true
     }
   ]
 }
