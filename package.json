@@ -50,7 +50,7 @@
   "devDependencies": {
     "@craco/craco": "5.9.0",
     "@types/json-server": "0.14.3",
-    "@types/prettier": "2.2.0",
+    "@types/prettier": "2.2.1",
     "craco-workbox": "0.1.0",
     "cypress": "6.4.0",
     "dotenv-cli": "4.0.0",
