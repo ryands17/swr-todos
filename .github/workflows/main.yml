@@ -28,7 +28,7 @@ jobs:
             nodeModules-
 
       - name: Install dependencies
-        run: rm -rf node_modules && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: npm i -g serve & yarn build
