@@ -1,6 +1,6 @@
 import * as React from 'react'
 import produce from 'immer'
-import { useMutation, queryCache } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import cx from 'clsx'
 import { Todo, Todos, QueryTodo } from 'config/types'
 import { ESCAPE_KEY, ENTER_KEY } from 'config/utils'
@@ -11,30 +11,32 @@ type Props = {
 }
 
 export const TodoItem: React.FC<Props> = ({ todo }) => {
+  const queryClient = useQueryClient()
+
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [isEditing, setIsEditing] = React.useState(false)
   const [editTitle, setEditTitle] = React.useState('')
   const [editId, setEditId] = React.useState<string | null>(null)
 
-  const [deleteT] = useMutation(deleteTodo, {
+  const { mutate: deleteT } = useMutation(deleteTodo, {
     onMutate: deletedId => {
-      const previousTodos = queryCache.getQueryData<Todos>('todos')
-      queryCache.setQueryData<QueryTodo>('todos', old =>
+      const previousTodos = queryClient.getQueryData<Todos>('todos')
+      queryClient.setQueryData<QueryTodo>('todos', old =>
         old?.filter(todo => todo.id !== deletedId)
       )
 
-      return () => queryCache.setQueryData('todos', previousTodos)
+      return () => queryClient.setQueryData('todos', previousTodos)
     },
   })
 
-  const [editT] = useMutation(editTodo, {
+  const { mutate: editT } = useMutation(editTodo, {
     onMutate: edited => {
-      const todos = queryCache.getQueryData<Todos>('todos')
+      const todos = queryClient.getQueryData<Todos>('todos')
       if (todos) {
         const index = todos.findIndex(todo => todo.id === edited.id)
 
         if (index !== -1) {
-          queryCache.setQueryData<QueryTodo>('todos', todos =>
+          queryClient.setQueryData<QueryTodo>('todos', todos =>
             produce(todos, draft => {
               Object.assign(draft?.[index], edited.body)
             })
@@ -42,7 +44,7 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
         }
       }
 
-      return () => queryCache.setQueryData('todos', todos)
+      return () => queryClient.setQueryData('todos', todos)
     },
   })
 

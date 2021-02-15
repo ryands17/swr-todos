@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
 import produce from 'immer'
 import { ENTER, uuidv4 } from 'config/utils'
-import { useMutation, queryCache } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { addTodo } from 'services/todos'
 import { Todos, QueryTodo } from 'config/types'
 
 export const AddTodo: React.FC = () => {
+  const queryClient = useQueryClient()
+
   const [title, setTitle] = useState('')
-  const [mutate] = useMutation(addTodo, {
+  const { mutate } = useMutation(addTodo, {
     onMutate: newTodo => {
       // Snapshot the previous value
-      const previousTodos = queryCache.getQueryData<Todos>('todos')
+      const previousTodos = queryClient.getQueryData<Todos>('todos')
 
       // Optimistically update to the new value
-      queryCache.setQueryData<QueryTodo>('todos', todos =>
+      queryClient.setQueryData<QueryTodo>('todos', todos =>
         produce(todos, draft => {
           draft?.push(newTodo)
         })
       )
 
       // Return the snapshotted value
-      return () => queryCache.setQueryData('todos', previousTodos)
+      return () => queryClient.setQueryData('todos', previousTodos)
     },
   })
 
