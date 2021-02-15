@@ -2,7 +2,7 @@
   "extends": ["config:base"],
   "masterIssue": true,
   "automerge": true,
-  "schedule": ["every month on Tuesday"],
+  "schedule": ["every 1 month on the first day of the month"],
   "ignoreDeps": ["react-scripts"],
   "packageRules": [
     {
