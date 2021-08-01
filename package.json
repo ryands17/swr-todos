@@ -5,10 +5,10 @@
   "dependencies": {
     "@material-ui/core": "4.11.4",
     "@material-ui/icons": "4.11.2",
-    "@types/jest": "26.0.23",
-    "@types/node": "14.17.4",
-    "@types/react": "17.0.13",
-    "@types/react-dom": "17.0.8",
+    "@types/jest": "26.0.24",
+    "@types/node": "14.17.6",
+    "@types/react": "17.0.15",
+    "@types/react-dom": "17.0.9",
     "axios": "0.21.1",
     "clsx": "1.1.1",
     "immer": "9.0.5",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@craco/craco": "6.1.2",
-    "@types/json-server": "0.14.3",
+    "@types/json-server": "0.14.4",
     "@types/prettier": "2.3.2",
     "craco-workbox": "0.1.0",
     "cypress": "7.6.0",
