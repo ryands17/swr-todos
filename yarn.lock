@@ -4329,12 +4329,10 @@ cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-craco-workbox@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/craco-workbox/-/craco-workbox-0.1.0.tgz#1c444a888aade274a169c95aad6f15124c8051dc"
-  integrity sha512-mwKYKH5pig6ER1s6SLSPTnN74WW8lvds71DMnSceO/lDcPkMIt1rHX9tAAPdACM5TfL8yMRCl9e94TgI0KVSBQ==
-  dependencies:
-    dot-json "^1.1.0"
+craco-workbox@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/craco-workbox/-/craco-workbox-0.2.0.tgz#13e5c3c87c49a67d3d64ad6d636868c623cd7d89"
+  integrity sha512-5UFq99GrBs+cvyxxHSlCPmEduUwCRLsmAmmaW6qLhpXeKwxzk1UguVYXbYZNILcjUTdOM1yuu0VLvi3a1mop/A==
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -4924,7 +4922,7 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
-detect-indent@^6.0.0, detect-indent@~6.0.0:
+detect-indent@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-6.0.0.tgz#0abd0f549f69fc6659a254fe96786186b6f528fd"
   integrity sha512-oSyFlqaTHCItVRGK5RmrmjB+CmaMOW7IaNA/kdxqhoa6d17j/5ce9O9eWXmV/KEdRwqpQA+Vqe8a8Bsybu4YnA==
@@ -4997,11 +4995,6 @@ dns-txt@^2.0.2:
   integrity sha1-uR2Ab10nGI5Ks+fRB9iBocxGQrY=
   dependencies:
     buffer-indexof "^1.0.0"
-
-docopt@~0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/docopt/-/docopt-0.6.2.tgz#b28e9e2220da5ec49f7ea5bb24a47787405eeb11"
-  integrity sha1-so6eIiDaXsSffqW7JKR3h0Be6xE=
 
 doctrine@1.5.0:
   version "1.5.0"
@@ -5100,15 +5093,6 @@ dot-case@^3.0.3:
   dependencies:
     no-case "^3.0.3"
     tslib "^1.10.0"
-
-dot-json@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/dot-json/-/dot-json-1.2.0.tgz#16f62bbb15b0b834f5c8de299cfb9e4d494f2ac1"
-  integrity sha512-4bEM7KHFl/U9gAI5nIvU0/fwVzNnE713K339vcxAMtxd2D9mZP6o65UwlcXigJL4rfk90UM0J+D7IPIFYZMQ8Q==
-  dependencies:
-    detect-indent "~6.0.0"
-    docopt "~0.6.2"
-    underscore-keypath "~0.0.22"
 
 dot-prop@^5.2.0:
   version "5.2.0"
@@ -12805,18 +12789,6 @@ typesync@0.8.0:
     glob "^7.1.4"
     ora "^5.1.0"
     semver "^7.3.2"
-
-underscore-keypath@~0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/underscore-keypath/-/underscore-keypath-0.0.22.tgz#48a528392bb6efc424be1caa56da4b5faccf264d"
-  integrity sha1-SKUoOSu278QkvhyqVtpLX6zPJk0=
-  dependencies:
-    underscore "*"
-
-underscore@*:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.1.tgz#0c1c6bd2df54b6b69f2314066d65b6cde6fcf9d1"
-  integrity sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
