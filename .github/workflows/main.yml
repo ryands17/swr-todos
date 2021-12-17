@@ -37,6 +37,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           record: false
-          env: HOST=http://localhost:5000
+          env: HOST=http://localhost:3000
           start: yarn start
-          wait-on: http://localhost:5000
+          wait-on: http://localhost:3000
