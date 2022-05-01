@@ -51,15 +51,15 @@
   "devDependencies": {
     "@craco/craco": "6.4.0",
     "@types/json-server": "0.14.4",
-    "@types/prettier": "2.4.4",
+    "@types/prettier": "2.6.0",
     "craco-workbox": "0.2.0",
     "cypress": "9.6.0",
     "dotenv-cli": "5.1.0",
     "husky": "7.0.4",
     "json-server": "0.17.0",
-    "lint-staged": "12.3.7",
+    "lint-staged": "12.4.1",
     "npm-run-all": "4.1.5",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "typesync": "0.9.1"
   },
   "prettier": {
