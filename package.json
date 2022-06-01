@@ -11,7 +11,7 @@
     "@types/react-dom": "18.0.3",
     "axios": "0.27.2",
     "clsx": "1.1.1",
-    "immer": "9.0.12",
+    "immer": "9.0.14",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-query": "3.38.1",
